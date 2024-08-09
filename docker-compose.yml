@@ -1,0 +1,38 @@
+version: "3"
+services:
+  ui:
+    image: reactimg
+    ports:
+      - 9092:80
+    networks:
+      - mynetb1
+    depends_on:
+      - app 
+
+  app:
+    image: springimg
+    container_name: app
+    ports:
+      - "8082:8082"
+    networks:
+      - mynetb1
+    environment:
+      - MYSQL_HOST=mysqldb11
+      - MYSQL_ROOT_PASSWORD=Root123$       
+      - MYSQL_PORT=3306
+    depends_on:
+      - mysqldb11
+ 
+  mysqldb11:
+    image: mysql
+    ports:
+      - "3308:3306"
+    networks:
+      - mynetb1
+    environment:
+      - MYSQL_ROOT_PASSWORD=Root123$
+      - MYSQL_DATABASE=userdb  
+
+networks:
+  mynetb1:
+     driver: bridge 

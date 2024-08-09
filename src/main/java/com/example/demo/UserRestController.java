@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-@CrossOrigin(origins = "*" /*{"http://app:8080", "http://localhost:3000"}*/, allowedHeaders="*", exposedHeaders = {"Access-Control-Allow-Origin"})
+@CrossOrigin(origins = "*" /*{"http://app:8080", "http://localhost:3000"}*/, allowedHeaders="*", exposedHeaders = {"Access-Control-Allow-Origin"},methods={RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.OPTIONS, RequestMethod.DELETE} )
 @RestController
 @RequestMapping(value= "/test")
 public class UserRestController extends JdbcDaoSupport {
